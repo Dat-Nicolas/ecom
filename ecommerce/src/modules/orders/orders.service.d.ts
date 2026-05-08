@@ -5,7 +5,9 @@ export declare class OrdersService {
     private prisma;
     private kafkaService;
     private readonly logger;
-    constructor(prisma: PrismaService, kafkaService: KafkaService);
+    constructor(prisma: PrismaService, 
+        //  kafkaService: KafkaService
+        );
     private generateOrderCode;
     create(userId: string, dto: CreateOrderDto): Promise<{
         items: {

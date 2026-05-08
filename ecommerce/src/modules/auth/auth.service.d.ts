@@ -9,7 +9,9 @@ export declare class AuthService {
     private configService;
     private kafkaService;
     private readonly logger;
-    constructor(prisma: PrismaService, jwtService: JwtService, configService: ConfigService, kafkaService: KafkaService);
+    constructor(prisma: PrismaService, jwtService: JwtService, configService: ConfigService, 
+        //  kafkaService: KafkaService
+        );
     register(dto: RegisterDto): Promise<{
         accessToken: string;
         refreshToken: string;

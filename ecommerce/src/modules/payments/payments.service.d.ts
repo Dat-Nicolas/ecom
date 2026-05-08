@@ -6,7 +6,9 @@ export declare class PaymentsService {
     private kafkaService;
     private configService;
     private readonly logger;
-    constructor(prisma: PrismaService, kafkaService: KafkaService, configService: ConfigService);
+    constructor(prisma: PrismaService, 
+        //  kafkaService: KafkaService
+        configService: ConfigService);
     createPayment(orderId: string, method: string, userId: string): Promise<{
         payment: {
             id: string;

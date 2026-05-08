@@ -5,7 +5,9 @@ import { KafkaService, KafkaTopic } from '../../config/kafka/kafka.service';
 
 @Injectable()
 export class ShipmentsService {
-  constructor(private prisma: PrismaService, private kafkaService: KafkaService) {}
+  constructor(private prisma: PrismaService, 
+    // private kafkaService: KafkaService
+  ) {}
 
   async create(data: any) {
     const order = await this.prisma.order.findUnique({ where: { id: data.orderId } });

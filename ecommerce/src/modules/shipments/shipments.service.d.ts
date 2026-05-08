@@ -1,9 +1,11 @@
 import { PrismaService } from '../../prisma/prisma.service';
-import { KafkaService } from '../../config/kafka/kafka.service';
+// import { KafkaService } from '../../config/kafka/kafka.service';
 export declare class ShipmentsService {
     private prisma;
     private kafkaService;
-    constructor(prisma: PrismaService, kafkaService: KafkaService);
+    constructor(prisma: PrismaService,
+        //  kafkaService: KafkaService
+        );
     create(data: any): Promise<{
         id: string;
         createdAt: Date;

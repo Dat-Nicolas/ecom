@@ -4,7 +4,9 @@ import { PaginationDto } from '../../common/dto/pagination.dto';
 export declare class InventoryService {
     private prisma;
     private kafkaService;
-    constructor(prisma: PrismaService, kafkaService: KafkaService);
+    constructor(prisma: PrismaService, 
+        //  kafkaService: KafkaService
+        );
     adjustStock(variantId: string, warehouseId: number, qtyChange: number, action: string, note: string, userId: string): Promise<{
         id: bigint;
         updatedAt: Date;
