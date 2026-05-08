@@ -49,7 +49,7 @@ export class AuthService {
     private prisma: PrismaService,
     private jwtService: JwtService,
     private configService: ConfigService,
-    private kafkaService: KafkaService,
+    // private kafkaService: KafkaService,
   ) {
     this.saltRounds = this.clampNumber(
       Number(this.configService.get('BCRYPT_ROUNDS', 12)),
@@ -103,11 +103,11 @@ export class AuthService {
       include: { role: true },
     });
 
-    await this.kafkaService.emit(KafkaTopic.USER_REGISTERED, {
-      id: user.id,
-      email: user.email,
-      fullName: user.fullName,
-    });
+    // await this.kafkaService.emit(KafkaTopic.USER_REGISTERED, {
+    //   id: user.id,
+    //   email: user.email,
+    //   fullName: user.fullName,
+    // });
 
     const tokens = await this.issueNewTokenPair(user);
     return {

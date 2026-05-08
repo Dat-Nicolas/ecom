@@ -11,7 +11,7 @@ export class PaymentsService {
 
   constructor(
     private prisma: PrismaService,
-    private kafkaService: KafkaService,
+    // private kafkaService: KafkaService,
     private configService: ConfigService,
   ) {}
 
@@ -63,12 +63,12 @@ export class PaymentsService {
       },
     });
 
-    if (success) {
-      await this.prisma.order.update({ where: { id: payment.orderId }, data: { status: 'confirmed' } });
-      await this.kafkaService.emit(KafkaTopic.PAYMENT_SUCCESS, { orderId: payment.orderId, paymentId: payment.id });
-    } else {
-      await this.kafkaService.emit(KafkaTopic.PAYMENT_FAILED, { orderId: payment.orderId, paymentId: payment.id });
-    }
+    // if (success) {
+    //   await this.prisma.order.update({ where: { id: payment.orderId }, data: { status: 'confirmed' } });
+    //   await this.kafkaService.emit(KafkaTopic.PAYMENT_SUCCESS, { orderId: payment.orderId, paymentId: payment.id });
+    // } else {
+    //   await this.kafkaService.emit(KafkaTopic.PAYMENT_FAILED, { orderId: payment.orderId, paymentId: payment.id });
+    // }
 
     return { success, message: success ? 'Payment successful' : 'Payment failed' };
   }
