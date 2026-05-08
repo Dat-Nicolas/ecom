@@ -6,7 +6,9 @@ import { paginate, PaginationDto } from '../../common/dto/pagination.dto';
 
 @Injectable()
 export class InventoryService {
-  constructor(private prisma: PrismaService, private kafkaService: KafkaService) {}
+  constructor(private prisma: PrismaService, 
+    // private kafkaService: KafkaService
+  ) {}
 
   async adjustStock(variantId: string, warehouseId: number, qtyChange: number, action: string, note: string, userId: string) {
     const inv = await this.prisma.inventory.findFirst({ where: { variantId, warehouseId } });
