@@ -60,8 +60,8 @@ import { PrismaModule } from './prisma/prisma.module';
     ScheduleModule.forRoot(),
     EventEmitterModule.forRoot(),
 
-    PrismaModule,
-    KafkaModule,
+    // PrismaModule,
+    // KafkaModule,
 
     AuthModule,
     UsersModule,
