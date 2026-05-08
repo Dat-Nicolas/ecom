@@ -27,7 +27,7 @@ export class PaymentsService {
     if (method === 'cod') {
       await this.prisma.payment.update({ where: { id: payment.id }, data: { status: 'pending' } });
       await this.prisma.order.update({ where: { id: orderId }, data: { status: 'confirmed' } });
-      await this.kafkaService.emit(KafkaTopic.PAYMENT_SUCCESS, { orderId, paymentId: payment.id, method });
+      // await this.kafkaService.emit(KafkaTopic.PAYMENT_SUCCESS, { orderId, paymentId: payment.id, method });
       return { payment, redirectUrl: null, message: 'COD order confirmed' };
     }
 
