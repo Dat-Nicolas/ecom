@@ -5,7 +5,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule, seconds } from '@nestjs/throttler';
 import { redisStore } from 'cache-manager-redis-yet';
-import { KafkaModule } from './config/kafka/kafka.module';
+// import { KafkaModule } from './config/kafka/kafka.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { BrandsModule } from './modules/brands/brands.module';
 import { CategoriesModule } from './modules/categories/categories.module';
@@ -19,7 +19,7 @@ import { ReviewsModule } from './modules/reviews/reviews.module';
 import { ShipmentsModule } from './modules/shipments/shipments.module';
 import { UploadModule } from './modules/upload/upload.module';
 import { UsersModule } from './modules/users/users.module';
-import { PrismaModule } from './prisma/prisma.module';
+// import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
