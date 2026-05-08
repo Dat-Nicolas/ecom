@@ -2,7 +2,8 @@ import {
   Injectable, NotFoundException, BadRequestException, Logger,
 } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { KafkaService, KafkaTopic } from '../../config/kafka/kafka.service';
+// import { KafkaService, KafkaTopic } from '../../config/kafka/kafka.service';
+import { KafkaTopic } from '../../config/kafka/kafka.service';
 import { paginate } from '../../common/dto/pagination.dto';
 import { CreateOrderDto, UpdateOrderStatusDto, OrderQueryDto } from './dto/order.dto';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,7 +12,9 @@ import { v4 as uuidv4 } from 'uuid';
 export class OrdersService {
   private readonly logger = new Logger(OrdersService.name);
 
-  constructor(private prisma: PrismaService, private kafkaService: KafkaService) {}
+  constructor(private prisma: PrismaService, 
+    // private kafkaService: KafkaService
+  ) {}
 
   private generateOrderCode(): string {
     const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
