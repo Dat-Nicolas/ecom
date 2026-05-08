@@ -34,14 +34,14 @@ export class InventoryService {
       },
     });
 
-    if (updated.qtyAvailable <= updated.reorderPoint) {
-      await this.kafkaService.emit(KafkaTopic.INVENTORY_LOW, {
-        variantId,
-        warehouseId,
-        qtyAvailable: updated.qtyAvailable,
-        reorderPoint: updated.reorderPoint,
-      });
-    }
+    // if (updated.qtyAvailable <= updated.reorderPoint) {
+    //   await this.kafkaService.emit(KafkaTopic.INVENTORY_LOW, {
+    //     variantId,
+    //     warehouseId,
+    //     qtyAvailable: updated.qtyAvailable,
+    //     reorderPoint: updated.reorderPoint,
+    //   });
+    // }
 
     return updated;
   }
