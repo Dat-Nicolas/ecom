@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ecommerce-api
+    env: node
+    rootDir: ecommerce
+    buildCommand: npm install && npm run build && npx prisma generate
+    startCommand: npx prisma migrate deploy && npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080
+
+  - type: web
+    name: ecommerce-web
+    env: node
+    rootDir: ecommerce-fe
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production

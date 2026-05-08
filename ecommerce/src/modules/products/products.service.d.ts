@@ -1,0 +1,296 @@
+import { Cache } from 'cache-manager';
+import { PrismaService } from '../../prisma/prisma.service';
+import { CreateProductDto, UpdateProductDto, ProductQueryDto, CreateVariantDto } from './dto/product.dto';
+export declare class ProductsService {
+    private prisma;
+    private cache;
+    constructor(prisma: PrismaService, cache: Cache);
+    create(dto: CreateProductDto): Promise<{
+        brand: {
+            id: number;
+            name: string;
+            slug: string;
+            createdAt: Date;
+            updatedAt: Date;
+            logoUrl: string | null;
+            country: string | null;
+            isActive: boolean;
+        };
+        category: {
+            id: number;
+            name: string;
+            slug: string;
+            createdAt: Date;
+            updatedAt: Date;
+            isActive: boolean;
+            parentId: number | null;
+            description: string | null;
+            imageUrl: string | null;
+            sortOrder: number;
+            metaTitle: string | null;
+            metaDesc: string | null;
+        };
+        variants: {
+            id: string;
+            name: string;
+            createdAt: Date;
+            updatedAt: Date;
+            isActive: boolean;
+            imageUrl: string | null;
+            sku: string;
+            price: import("@prisma/client/runtime/library").Decimal;
+            salePrice: import("@prisma/client/runtime/library").Decimal | null;
+            attributes: import("@prisma/client/runtime/library").JsonValue | null;
+            productId: string;
+            barcode: string | null;
+        }[];
+        images: {
+            id: string;
+            createdAt: Date;
+            sortOrder: number;
+            productId: string;
+            variantId: string | null;
+            url: string;
+            altText: string | null;
+            isPrimary: boolean;
+        }[];
+    } & {
+        id: string;
+        name: string;
+        slug: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.ProductStatus;
+        description: string | null;
+        sku: string | null;
+        categoryId: number;
+        brandId: number | null;
+        price: import("@prisma/client/runtime/library").Decimal;
+        salePrice: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        dimensions: import("@prisma/client/runtime/library").JsonValue | null;
+        attributes: import("@prisma/client/runtime/library").JsonValue | null;
+        isFeatured: boolean;
+        avgRating: import("@prisma/client/runtime/library").Decimal;
+        reviewCount: number;
+        soldCount: number;
+    }>;
+    findAll(query: ProductQueryDto): Promise<import("../../common/dto/pagination.dto").PaginatedResult<{
+        brand: {
+            id: number;
+            name: string;
+            slug: string;
+            createdAt: Date;
+            updatedAt: Date;
+            logoUrl: string | null;
+            country: string | null;
+            isActive: boolean;
+        };
+        category: {
+            id: number;
+            name: string;
+            slug: string;
+            createdAt: Date;
+            updatedAt: Date;
+            isActive: boolean;
+            parentId: number | null;
+            description: string | null;
+            imageUrl: string | null;
+            sortOrder: number;
+            metaTitle: string | null;
+            metaDesc: string | null;
+        };
+        images: {
+            id: string;
+            createdAt: Date;
+            sortOrder: number;
+            productId: string;
+            variantId: string | null;
+            url: string;
+            altText: string | null;
+            isPrimary: boolean;
+        }[];
+        _count: {
+            variants: number;
+        };
+    } & {
+        id: string;
+        name: string;
+        slug: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.ProductStatus;
+        description: string | null;
+        sku: string | null;
+        categoryId: number;
+        brandId: number | null;
+        price: import("@prisma/client/runtime/library").Decimal;
+        salePrice: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        dimensions: import("@prisma/client/runtime/library").JsonValue | null;
+        attributes: import("@prisma/client/runtime/library").JsonValue | null;
+        isFeatured: boolean;
+        avgRating: import("@prisma/client/runtime/library").Decimal;
+        reviewCount: number;
+        soldCount: number;
+    }>>;
+    findOne(id: string): Promise<unknown>;
+    findBySlug(slug: string): Promise<{
+        brand: {
+            id: number;
+            name: string;
+            slug: string;
+            createdAt: Date;
+            updatedAt: Date;
+            logoUrl: string | null;
+            country: string | null;
+            isActive: boolean;
+        };
+        category: {
+            id: number;
+            name: string;
+            slug: string;
+            createdAt: Date;
+            updatedAt: Date;
+            isActive: boolean;
+            parentId: number | null;
+            description: string | null;
+            imageUrl: string | null;
+            sortOrder: number;
+            metaTitle: string | null;
+            metaDesc: string | null;
+        };
+        variants: {
+            id: string;
+            name: string;
+            createdAt: Date;
+            updatedAt: Date;
+            isActive: boolean;
+            imageUrl: string | null;
+            sku: string;
+            price: import("@prisma/client/runtime/library").Decimal;
+            salePrice: import("@prisma/client/runtime/library").Decimal | null;
+            attributes: import("@prisma/client/runtime/library").JsonValue | null;
+            productId: string;
+            barcode: string | null;
+        }[];
+        images: {
+            id: string;
+            createdAt: Date;
+            sortOrder: number;
+            productId: string;
+            variantId: string | null;
+            url: string;
+            altText: string | null;
+            isPrimary: boolean;
+        }[];
+    } & {
+        id: string;
+        name: string;
+        slug: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.ProductStatus;
+        description: string | null;
+        sku: string | null;
+        categoryId: number;
+        brandId: number | null;
+        price: import("@prisma/client/runtime/library").Decimal;
+        salePrice: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        dimensions: import("@prisma/client/runtime/library").JsonValue | null;
+        attributes: import("@prisma/client/runtime/library").JsonValue | null;
+        isFeatured: boolean;
+        avgRating: import("@prisma/client/runtime/library").Decimal;
+        reviewCount: number;
+        soldCount: number;
+    }>;
+    update(id: string, dto: UpdateProductDto): Promise<{
+        brand: {
+            id: number;
+            name: string;
+            slug: string;
+            createdAt: Date;
+            updatedAt: Date;
+            logoUrl: string | null;
+            country: string | null;
+            isActive: boolean;
+        };
+        category: {
+            id: number;
+            name: string;
+            slug: string;
+            createdAt: Date;
+            updatedAt: Date;
+            isActive: boolean;
+            parentId: number | null;
+            description: string | null;
+            imageUrl: string | null;
+            sortOrder: number;
+            metaTitle: string | null;
+            metaDesc: string | null;
+        };
+        variants: {
+            id: string;
+            name: string;
+            createdAt: Date;
+            updatedAt: Date;
+            isActive: boolean;
+            imageUrl: string | null;
+            sku: string;
+            price: import("@prisma/client/runtime/library").Decimal;
+            salePrice: import("@prisma/client/runtime/library").Decimal | null;
+            attributes: import("@prisma/client/runtime/library").JsonValue | null;
+            productId: string;
+            barcode: string | null;
+        }[];
+        images: {
+            id: string;
+            createdAt: Date;
+            sortOrder: number;
+            productId: string;
+            variantId: string | null;
+            url: string;
+            altText: string | null;
+            isPrimary: boolean;
+        }[];
+    } & {
+        id: string;
+        name: string;
+        slug: string;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.ProductStatus;
+        description: string | null;
+        sku: string | null;
+        categoryId: number;
+        brandId: number | null;
+        price: import("@prisma/client/runtime/library").Decimal;
+        salePrice: import("@prisma/client/runtime/library").Decimal | null;
+        weight: import("@prisma/client/runtime/library").Decimal | null;
+        dimensions: import("@prisma/client/runtime/library").JsonValue | null;
+        attributes: import("@prisma/client/runtime/library").JsonValue | null;
+        isFeatured: boolean;
+        avgRating: import("@prisma/client/runtime/library").Decimal;
+        reviewCount: number;
+        soldCount: number;
+    }>;
+    remove(id: string): Promise<{
+        message: string;
+    }>;
+    addVariant(productId: string, dto: CreateVariantDto): Promise<{
+        id: string;
+        name: string;
+        createdAt: Date;
+        updatedAt: Date;
+        isActive: boolean;
+        imageUrl: string | null;
+        sku: string;
+        price: import("@prisma/client/runtime/library").Decimal;
+        salePrice: import("@prisma/client/runtime/library").Decimal | null;
+        attributes: import("@prisma/client/runtime/library").JsonValue | null;
+        productId: string;
+        barcode: string | null;
+    }>;
+    getFeatured(): Promise<unknown>;
+}
