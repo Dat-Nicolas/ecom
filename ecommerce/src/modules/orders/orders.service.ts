@@ -142,12 +142,12 @@ export class OrdersService {
       return created;
     });
 
-    await this.kafkaService.emit(KafkaTopic.ORDER_CREATED, {
-      id: order.id,
-      orderCode: order.orderCode,
-      userId,
-      total,
-    });
+    // await this.kafkaService.emit(KafkaTopic.ORDER_CREATED, {
+    //   id: order.id,
+    //   orderCode: order.orderCode,
+    //   userId,
+    //   total,
+    // });
 
     return order;
   }
@@ -214,11 +214,11 @@ export class OrdersService {
       data: { status: dto.status as any },
     });
 
-    if (dto.status === 'cancelled') {
-      await this.kafkaService.emit(KafkaTopic.ORDER_CANCELLED, { id, orderCode: order.orderCode });
-    } else if (dto.status === 'confirmed') {
-      await this.kafkaService.emit(KafkaTopic.ORDER_CONFIRMED, { id, orderCode: order.orderCode });
-    }
+    // if (dto.status === 'cancelled') {
+    //   await this.kafkaService.emit(KafkaTopic.ORDER_CANCELLED, { id, orderCode: order.orderCode });
+    // } else if (dto.status === 'confirmed') {
+    //   await this.kafkaService.emit(KafkaTopic.ORDER_CONFIRMED, { id, orderCode: order.orderCode });
+    // }
 
     return updated;
   }
