@@ -29,7 +29,7 @@ export class ShipmentsService {
         deliveredAt: status === 'delivered' ? new Date() : s.deliveredAt,
       },
     });
-    await this.kafkaService.emit(KafkaTopic.SHIPMENT_UPDATED, { shipmentId: id, orderId: s.orderId, status });
+    // await this.kafkaService.emit(KafkaTopic.SHIPMENT_UPDATED, { shipmentId: id, orderId: s.orderId, status });
     if (status === 'delivered') {
       await this.prisma.order.update({ where: { id: s.orderId }, data: { status: 'delivered' } });
     }
